@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "forwardcheck-api"
+version = "0.1.0"
+description = "Evidence-grounded investigation API for ForwardCheck AI"
+requires-python = ">=3.12"
+dependencies = [
+  "alembic==1.20.0",
+  "beautifulsoup4==4.15.0",
+  "fastapi==0.143.0",
+  "google-genai==1.75.0",
+  "httpx==0.28.1",
+  "psycopg[binary]==3.3.6",
+  "pydantic-settings==2.15.0",
+  "python-multipart==0.0.32",
+  "sqlalchemy==2.1.4",
+  "uvicorn[standard]==0.54.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy==1.20.2",
+  "pytest==8.4.2",
+  "pytest-cov==6.3.0",
+  "ruff==0.17.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --disable-warnings --maxfail=1"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["B008"] # FastAPI uses Depends() and Query() in parameter defaults by design.
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+strict = true
+

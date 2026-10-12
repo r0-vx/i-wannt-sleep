@@ -1,0 +1,3 @@
+import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
+export default function NotFound() { return <div className="min-h-screen"><SiteHeader/><main className="mx-auto max-w-[760px] px-5 py-24 text-center"><p className="font-metric text-sm font-bold text-[var(--indigo)]">404</p><h1 className="mt-4 text-5xl font-bold tracking-[-0.055em]">This evidence trail ends here.</h1><p className="mt-5 leading-7 text-[var(--text-muted)]">The page or investigation link does not exist, or it is not available to this browser session.</p><Link href="/dashboard" className="button-primary mt-8">Return to Dashboard</Link></main></div>; }
